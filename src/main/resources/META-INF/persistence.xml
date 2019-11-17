@@ -16,7 +16,7 @@ mapped to database tables. Database driver, location, userid and pw
         <!-- Define the class for Hibernate which implements JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Define the object that should be persisted in the database -->
-        <class>beornot2be.docsEE.db.Document</class>
+        <class>beornot2be.docsEE.db.tables.Document</class>
         <properties>
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

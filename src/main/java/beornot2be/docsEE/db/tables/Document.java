@@ -1,4 +1,4 @@
-package beornot2be.docsEE.db;
+package beornot2be.docsEE.db.tables;
 
 import java.io.Serializable;
 import java.util.Date;
