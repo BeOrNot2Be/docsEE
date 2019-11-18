@@ -1,0 +1,18 @@
+type Document{
+    document_id:ID
+    title:String
+    description:String
+    created_at:String
+    edited_date:String
+}
+
+type Query{
+    getDocuments:[Document]
+    getDocument(document_id:ID):Document
+}
+
+type Mutation{
+    addDocument(title:String, description:String):Boolean
+    deleteDocument(document_id:ID):Boolean
+    updateDocument(document_id:ID, title:String, description:String):Boolean
+}

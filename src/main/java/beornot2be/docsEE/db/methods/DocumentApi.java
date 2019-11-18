@@ -1,7 +1,6 @@
 package beornot2be.docsEE.db.methods;
 
-import beornot2be.docsEE.db.tables.Document;
-import com.sun.javadoc.Doc;
+import beornot2be.docsEE.model.Document;
 
 import java.util.List;
 
@@ -17,20 +16,21 @@ public class DocumentApi {
     }
 
 
-    public static void addDocument(String title, String desc) {
+    public static boolean addDocument(String title, String description) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = null;
-
+        boolean accomplished = false;
         try {
             et = em.getTransaction();
             et.begin();
 
             Document document = new Document();
-            document.setDescription(desc);
+            document.setDescription(description);
             document.setTitle(title);
 
             em.persist(document);
             et.commit();
+            accomplished = true;
         } catch (Exception ex) {
             if (et != null) {
                 et.rollback();
@@ -39,18 +39,18 @@ public class DocumentApi {
         } finally {
             em.close();
         }
+        return  accomplished;
     }
 
-    public static void getDocuments() {
+    public static List<Document> getDocuments() {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 
         String strQuery = "SELECT d FROM Document d WHERE d.document_id IS NOT NULL";
 
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
-        List<Document> docs;
+        List<Document> docs = null;
         try {
             docs = tq.getResultList();
-            docs.forEach(doc->System.out.println(doc.getTitle() + " / " + doc.getCreated_at()));
         }
         catch(NoResultException ex) {
             ex.printStackTrace();
@@ -58,21 +58,21 @@ public class DocumentApi {
         finally {
             em.close();
         }
+        return docs;
     }
 
-    public static void getDocument(int id) {
+    public static Document getDocument(int document_id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 
         String query = "SELECT d FROM Document d WHERE d.document_id = :document_id";
 
         TypedQuery<Document> tq = em.createQuery(query, Document.class);
 
-        tq.setParameter("document_id", id);
+        tq.setParameter("document_id", document_id);
 
         Document doc = null;
         try {
             doc = tq.getSingleResult();
-            System.out.println(doc.getTitle() + " / " + doc.getCreated_at());
         }
         catch(NoResultException ex) {
             ex.printStackTrace();
@@ -80,25 +80,27 @@ public class DocumentApi {
         finally {
             em.close();
         }
+        return doc;
     }
 
-    public static void updateDocument(int document_id, String title, String desc) {
+    public static boolean updateDocument(int document_id, String title, String description) {
 
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = null;
 
         Document doc = null;
-
+        boolean accomplished = false;
         try {
             et = em.getTransaction();
             et.begin();
 
             doc = em.find(Document.class, document_id);
             doc.setTitle(title);
-            doc.setDescription(desc);
+            doc.setDescription(description);
 
             em.persist(doc);
             et.commit();
+            accomplished = true;
         } catch (Exception ex) {
             if (et != null) {
                 et.rollback();
@@ -107,19 +109,21 @@ public class DocumentApi {
         } finally {
             em.close();
         }
+        return  accomplished;
     }
 
-    public static void deleteDocument(int document_id) {
+    public static boolean deleteDocument(int document_id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = null;
         Document doc = null;
-
+        boolean accomplished = false;
         try {
             et = em.getTransaction();
             et.begin();
             doc = em.find(Document.class, document_id);
             em.remove(doc);
             et.commit();
+            accomplished = true;
         } catch (Exception ex) {
             if (et != null) {
                 et.rollback();
@@ -128,6 +132,7 @@ public class DocumentApi {
         } finally {
             em.close();
         }
+        return  accomplished;
     }
 
 

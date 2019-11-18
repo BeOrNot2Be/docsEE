@@ -15,6 +15,7 @@ public class Database {
     }
 
     public void close () {
+        System.out.println(1);
         ENTITY_MANAGER_FACTORY.close();
     }
 }
