@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -18,6 +19,10 @@ public class GraphQLProvider {
 
     @Autowired
     DocumentDataFetcher DocumentDataFetcher;
+    @Autowired
+    DocumentFileDataFetcher DocumentFileDataFetcher;
+    @Autowired
+    FileTypeDataFetcher FileTypeDataFetcher;
 
     private GraphQL graphQL;
 
@@ -57,14 +62,30 @@ public class GraphQLProvider {
         return TypeRuntimeWiring.newTypeWiring("Mutation")
                 .dataFetcher("addDocument", DocumentDataFetcher.addDocument())
                 .dataFetcher("deleteDocument", DocumentDataFetcher.deleteDocument())
-                .dataFetcher("updateDocument", DocumentDataFetcher.updateDocument());
+                .dataFetcher("updateDocument", DocumentDataFetcher.updateDocument())
+
+                .dataFetcher("addDocumentFile", DocumentFileDataFetcher.addDocumentFile())
+                .dataFetcher("deleteDocumentFile", DocumentFileDataFetcher.deleteDocumentFile())
+                .dataFetcher("updateDocumentFile", DocumentFileDataFetcher.updateDocumentFile())
+
+                .dataFetcher("addFileType", FileTypeDataFetcher.addFileType())
+                .dataFetcher("deleteFileType", FileTypeDataFetcher.deleteFileType())
+                .dataFetcher("updateFileType", FileTypeDataFetcher.updateFileType())
+                ;
     }
 
     private TypeRuntimeWiring.Builder queryBuilder()
     {
         return TypeRuntimeWiring.newTypeWiring("Query")
                 .dataFetcher("getDocuments", DocumentDataFetcher.getDocuments())
-                .dataFetcher("getDocument", DocumentDataFetcher.getDocument());
+                .dataFetcher("getDocument", DocumentDataFetcher.getDocument())
+
+                .dataFetcher("getDocumentFiles", DocumentFileDataFetcher.getDocumentFiles())
+                .dataFetcher("getDocumentFile", DocumentFileDataFetcher.getDocumentFile())
+
+                .dataFetcher("getFileTypes", FileTypeDataFetcher.getFileTypes())
+                .dataFetcher("getFileType", FileTypeDataFetcher.getFileType())
+                ;
 
     }
 
