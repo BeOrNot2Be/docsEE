@@ -6,13 +6,50 @@ type Document{
     edited_date:String
 }
 
+type FileType{
+    file_type_id:ID
+    title:String
+}
+
+type DocumentFile{
+    document_file_id:ID
+    title:String
+    link:String
+    created_at:String
+    document_id:Int
+    type:Int
+}
+type FullDocument{
+    document_id:ID
+    title:String
+    description:String
+    created_at:String
+    edited_date:String
+    files:[DocumentFile]
+}
+
 type Query{
-    getDocuments:[Document]
     getDocument(document_id:ID):Document
+    getDocumentsFiles(document_id:ID):[DocumentFile]
+    getDocuments:[Document]
+
+    getDocumentFile(document_file_id:ID):DocumentFile
+    getDocumentFiles:[DocumentFile]
+
+    getFileType(file_type_id:ID):FileType
+    getFileTypes:[FileType]
 }
 
 type Mutation{
     addDocument(title:String, description:String):Boolean
     deleteDocument(document_id:ID):Boolean
     updateDocument(document_id:ID, title:String, description:String):Boolean
+
+    addDocumentFile(title:String, link:String, document_id:Int, type:Int):Boolean
+    deleteDocumentFile(document_file_id:ID):Boolean
+    updateDocumentFile(document_file_id:ID, title:String, link:String, document_id:Int, type:Int):Boolean
+
+    addFileType(title:String):Boolean
+    deleteFileType(file_type_id:ID):Boolean
+    updateFileType(file_type_id:ID, title:String):Boolean
 }

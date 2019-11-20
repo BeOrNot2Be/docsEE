@@ -18,6 +18,13 @@ public class DocumentDataFetcher {
                 );
     }
 
+    public DataFetcher getDocumentFiles() {
+        return dataFetchingEnvironment -> DocumentApi
+                .getDocumentFiles(
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("document_id"))
+                );
+    }
+
     public DataFetcher addDocument() {
         return dataFetchingEnvironment -> DocumentApi
                 .addDocument(

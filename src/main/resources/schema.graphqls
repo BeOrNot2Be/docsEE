@@ -19,16 +19,25 @@ type DocumentFile{
     document_id:Int
     type:Int
 }
+type FullDocument{
+    document_id:ID
+    title:String
+    description:String
+    created_at:String
+    edited_date:String
+    files:[DocumentFile]
+}
 
 type Query{
-    getDocuments:[Document]
     getDocument(document_id:ID):Document
+    getDocumentsFiles(document_id:ID):[DocumentFile]
+    getDocuments:[Document]
 
-    getDocumentFile:[DocumentFile]
-    getDocumentFiles(document_file_id:ID):DocumentFile
+    getDocumentFile(document_file_id:ID):DocumentFile
+    getDocumentFiles:[DocumentFile]
 
-    getFileType:[FileType]
-    getFileTypes(file_type_id:ID):FileType
+    getFileType(file_type_id:ID):FileType
+    getFileTypes:[FileType]
 }
 
 type Mutation{

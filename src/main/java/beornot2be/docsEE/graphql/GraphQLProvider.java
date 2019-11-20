@@ -78,6 +78,7 @@ public class GraphQLProvider {
     {
         return TypeRuntimeWiring.newTypeWiring("Query")
                 .dataFetcher("getDocuments", DocumentDataFetcher.getDocuments())
+                .dataFetcher("getDocumentsFiles", DocumentDataFetcher.getDocumentFiles())
                 .dataFetcher("getDocument", DocumentDataFetcher.getDocument())
 
                 .dataFetcher("getDocumentFiles", DocumentFileDataFetcher.getDocumentFiles())

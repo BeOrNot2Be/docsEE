@@ -17,6 +17,9 @@ mapped to database tables. Database driver, location, userid and pw
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Define the object that should be persisted in the database -->
         <class>beornot2be.docsEE.model.Document</class>
+        <class>beornot2be.docsEE.model.DocumentFile</class>
+        <class>beornot2be.docsEE.model.FileType</class>
+
         <properties>
             <!-- Driver for DB database -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

@@ -1,6 +1,7 @@
 package beornot2be.docsEE.db.methods;
 
 import beornot2be.docsEE.model.Document;
+import beornot2be.docsEE.model.DocumentFile;
 
 import java.util.List;
 
@@ -81,6 +82,28 @@ public class DocumentApi {
             em.close();
         }
         return doc;
+    }
+
+    public static List<DocumentFile> getDocumentFiles(int document_id) {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+
+        String query = "SELECT df FROM DocumentFile df WHERE df.document_id = :document_id";
+
+        TypedQuery<DocumentFile> tq = em.createQuery(query, DocumentFile.class);
+
+        tq.setParameter("document_id", document_id);
+
+        List<DocumentFile> docFile = null;
+        try {
+            docFile = tq.getResultList();
+        }
+        catch(NoResultException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
+        return docFile;
     }
 
     public static boolean updateDocument(int document_id, String title, String description) {

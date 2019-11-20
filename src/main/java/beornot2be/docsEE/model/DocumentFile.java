@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Document_file")
+@Table(name = "Document_File")
 public class DocumentFile implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -21,8 +21,8 @@ public class DocumentFile implements Serializable {
     public int getDocument_file_id() {
         return document_file_id;
     }
-    @JoinColumn(name = "document_id", nullable = false, unique=false)
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @Column(name = "document_id", nullable = false, unique=false)
     private int document_id;
 
     public void setDocument_id(int document_id) {
@@ -69,8 +69,8 @@ public class DocumentFile implements Serializable {
         return link;
     }
 
-    @JoinColumn(name = "type", nullable = false, unique=false)
-    @OneToMany(cascade = CascadeType.ALL)
+    //@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type", nullable = false, unique=false /* referencedColumnName = "file_type_id"*/)
     private int type;
 
     public void setType(int type) {

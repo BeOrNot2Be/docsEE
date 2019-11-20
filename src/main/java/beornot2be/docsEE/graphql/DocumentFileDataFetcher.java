@@ -23,8 +23,8 @@ public class DocumentFileDataFetcher {
                 .addDocumentFile(
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("link"),
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("document_id")),
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("type"))
+                        dataFetchingEnvironment.getArgument("document_id"),
+                        dataFetchingEnvironment.getArgument("type")
                         );
     }
 
@@ -41,8 +41,8 @@ public class DocumentFileDataFetcher {
                         Integer.parseInt(dataFetchingEnvironment.getArgument("document_file_id")),
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("link"),
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("document_id")),
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("type"))
+                        dataFetchingEnvironment.getArgument("document_id"),
+                        dataFetchingEnvironment.getArgument("type")
                 );
     }
 }
