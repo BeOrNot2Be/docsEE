@@ -69,15 +69,21 @@ public class DocumentFile implements Serializable {
         return link;
     }
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type", nullable = false, unique=false /* referencedColumnName = "file_type_id"*/)
-    private int type;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type", nullable = false, unique=false, referencedColumnName = "file_type_id")
+    private FileType type;
 
-    public void setType(int type) {
+    public void setType(FileType type) {
         this.type = type;
     }
 
-    public int getType() {
+    public FileType getType() {
         return type;
     }
+
+
+    @ManyToOne
+    @JoinColumn(name="document_id", nullable=false, insertable = false, updatable = false)
+    private Document document;
+
 }

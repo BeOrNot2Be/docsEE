@@ -4,6 +4,7 @@ type Document{
     description:String
     created_at:String
     edited_date:String
+    files:[DocumentFile]
 }
 
 type FileType{
@@ -17,16 +18,9 @@ type DocumentFile{
     link:String
     created_at:String
     document_id:Int
-    type:Int
+    type:FileType
 }
-type FullDocument{
-    document_id:ID
-    title:String
-    description:String
-    created_at:String
-    edited_date:String
-    files:[DocumentFile]
-}
+
 
 type Query{
     getDocument(document_id:ID):Document

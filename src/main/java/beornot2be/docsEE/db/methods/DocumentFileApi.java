@@ -1,6 +1,7 @@
 package beornot2be.docsEE.db.methods;
 
 import beornot2be.docsEE.model.DocumentFile;
+import beornot2be.docsEE.model.FileType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,11 +24,17 @@ public class DocumentFileApi {
             et = em.getTransaction();
             et.begin();
 
+            String query = "SELECT f FROM FileType f WHERE f.file_type_id = :file_type_id";
+            TypedQuery<FileType> tq = em.createQuery(query, FileType.class);
+            tq.setParameter("file_type_id", type);
+            FileType fileType = null;
+            fileType = tq.getSingleResult();
+
             DocumentFile docFile = new DocumentFile();
             docFile.setTitle(title);
             docFile.setLink(link);
             docFile.setDocument_id(document_id);
-            docFile.setType(type);
+            docFile.setType(fileType);
 
             em.persist(docFile);
             et.commit();
@@ -95,11 +102,18 @@ public class DocumentFileApi {
             et = em.getTransaction();
             et.begin();
 
+
+            String query = "SELECT f FROM FileType f WHERE f.file_type_id = :file_type_id";
+            TypedQuery<FileType> tq = em.createQuery(query, FileType.class);
+            tq.setParameter("file_type_id", type);
+            FileType fileType = null;
+            fileType = tq.getSingleResult();
+
             docFile = em.find(DocumentFile.class, document_file_id);
             docFile.setTitle(title);
             docFile.setLink(link);
             docFile.setDocument_id(document_id);
-            docFile.setType(type);
+            docFile.setType(fileType);
 
             em.persist(docFile);
             et.commit();

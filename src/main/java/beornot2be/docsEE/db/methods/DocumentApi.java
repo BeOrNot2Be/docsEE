@@ -96,6 +96,7 @@ public class DocumentApi {
         List<DocumentFile> docFile = null;
         try {
             docFile = tq.getResultList();
+            //docFile.forEach(documentFile -> System.out.println(documentFile.getType().getTitle()));
         }
         catch(NoResultException ex) {
             ex.printStackTrace();

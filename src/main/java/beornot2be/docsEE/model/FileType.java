@@ -35,4 +35,7 @@ public class FileType implements Serializable {
         return title;
     }
 
+    @OneToOne(mappedBy = "type")
+    private DocumentFile documentFile;
+
 }

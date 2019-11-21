@@ -3,6 +3,9 @@ package beornot2be.docsEE.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,7 @@ public class Document implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "document_id")
     private int document_id;
+
 
     public void setDocument_id(int id) {
         this.document_id = id;
@@ -76,6 +80,17 @@ public class Document implements Serializable{
 
     public Date getEdited_date() {
         return edited_date;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "document")
+    private Set<DocumentFile> files;
+
+    public Optional getFiles() {
+        return Optional.ofNullable(files);
+    }
+
+    public void setFiles( Set<DocumentFile> files) {
+        this.files = files;
     }
 
 }
