@@ -1,12 +1,3 @@
-type Document{
-    document_id:ID
-    title:String
-    description:String
-    created_at:String
-    edited_date:String
-    files:[DocumentFile]
-}
-
 type FileType{
     file_type_id:ID
     title:String
@@ -21,6 +12,14 @@ type DocumentFile{
     type:FileType
 }
 
+type Document{
+    document_id:ID
+    title:String
+    description:String
+    created_at:String
+    edited_date:String
+    files:[DocumentFile]
+}
 
 type Query{
     getDocument(document_id:ID):Document
