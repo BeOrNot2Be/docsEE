@@ -47,14 +47,25 @@ type Document{
 
 type Query{
     getDocument(document_id:ID):Document
-    getDocumentsFiles(document_id:ID):[DocumentFile]
     getDocuments:[Document]
+    getDocumentsFiles(document_id:ID):[DocumentFile]
 
     getDocumentFile(document_file_id:ID):DocumentFile
     getDocumentFiles:[DocumentFile]
 
     getFileType(file_type_id:ID):FileType
     getFileTypes:[FileType]
+
+    getUser(user_id:ID):User
+    getUsers:[User]
+
+    getDocumentPermision(document_permision_id:ID):DocumentPermision
+    getDocumentPermisions:[PermissionType]
+    getDependantPermision(user_id:ID):[DocumentPermision]
+    getAuthorPermision(user_id:ID):[DocumentPermision]
+
+    getPermissionType(permission_type_id:ID):PermissionType
+    getPermissionTypes:[PermissionType]
 }
 
 type Mutation{
@@ -64,9 +75,44 @@ type Mutation{
 
     addDocumentFile(title:String, link:String, document_id:Int, type:Int):Boolean
     deleteDocumentFile(document_file_id:ID):Boolean
-    updateDocumentFile(document_file_id:ID, title:String, link:String, document_id:Int, type:Int):Boolean
+    updateDocumentFile(
+        document_file_id:ID,
+        title:String,
+        link:String,
+        document_id:Int,
+        type:Int
+    ):Boolean
 
     addFileType(title:String):Boolean
     deleteFileType(file_type_id:ID):Boolean
     updateFileType(file_type_id:ID, title:String):Boolean
+
+    addUser(name:String, username:String, email:String, password:String):Boolean
+    deleteUser(user_id:ID):Boolean
+    updateUser(
+        user_id:ID,
+        name:String,
+        username:String,
+        email:String,
+        password:String
+    ):Boolean
+
+    addDocumentPermision(
+        document_id:Int,
+        author_id:Int,
+        dependant_user_id:Int,
+        permission_type_id:Int
+    ):Boolean
+    deleteDocumentPermision(document_permision_id:ID):Boolean
+    updateDocumentPermision(
+        document_permision_id:ID,
+        document_id:Int,
+        author_id:Int,
+        dependant_user_id:Int,
+        permission_type_id:Int
+    ):Boolean
+
+    addPermissionType(title:String):Boolean
+    deletePermissionType(permission_type_id:ID):Boolean
+    updatePermissionType(permission_type_id:ID, title:String):Boolean
 }

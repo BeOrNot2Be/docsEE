@@ -1,5 +1,6 @@
 package beornot2be.docsEE.graphql;
 
+import beornot2be.docsEE.model.DocumentPermision;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import graphql.GraphQL;
@@ -23,6 +24,12 @@ public class GraphQLProvider {
     DocumentFileDataFetcher DocumentFileDataFetcher;
     @Autowired
     FileTypeDataFetcher FileTypeDataFetcher;
+    @Autowired
+    DocumentPermisionDataFetcher DocumentPermisionDataFetcher;
+    @Autowired
+    PermissionTypeDataFetcher PermissionTypeDataFetcher;
+    @Autowired
+    UserDataFetcher UserDataFetcher;
 
     private GraphQL graphQL;
 
@@ -71,6 +78,18 @@ public class GraphQLProvider {
                 .dataFetcher("addFileType", FileTypeDataFetcher.addFileType())
                 .dataFetcher("deleteFileType", FileTypeDataFetcher.deleteFileType())
                 .dataFetcher("updateFileType", FileTypeDataFetcher.updateFileType())
+
+                .dataFetcher("addUser", UserDataFetcher.addUser())
+                .dataFetcher("deleteUser", UserDataFetcher.deleteUser())
+                .dataFetcher("updateUser", UserDataFetcher.updateUser())
+
+                .dataFetcher("addDocumentPermision", DocumentPermisionDataFetcher.addDocumentPermisions())
+                .dataFetcher("deleteDocumentPermision", DocumentPermisionDataFetcher.deleteDocumentPermision())
+                .dataFetcher("updateDocumentPermision", DocumentPermisionDataFetcher.updateDocumentPermision())
+
+                .dataFetcher("addPermissionType", PermissionTypeDataFetcher.addPermissionType())
+                .dataFetcher("deletePermissionType", PermissionTypeDataFetcher.deletePermissionType())
+                .dataFetcher("updatePermissionType", PermissionTypeDataFetcher.updatePermissionType())
                 ;
     }
 
@@ -86,6 +105,17 @@ public class GraphQLProvider {
 
                 .dataFetcher("getFileTypes", FileTypeDataFetcher.getFileTypes())
                 .dataFetcher("getFileType", FileTypeDataFetcher.getFileType())
+
+                .dataFetcher("getUsers", UserDataFetcher.getUsers())
+                .dataFetcher("getUser", UserDataFetcher.getUser())
+
+                .dataFetcher("getDocumentPermisions", DocumentPermisionDataFetcher.getDocumentPermisions())
+                .dataFetcher("getDocumentPermision", DocumentPermisionDataFetcher.getDocumentPermision())
+                .dataFetcher("getDependantPermision", DocumentPermisionDataFetcher.getDependantPermision())
+                .dataFetcher("getAuthorPermision", DocumentPermisionDataFetcher.getAuthorPermision())
+
+                .dataFetcher("getPermissionTypes", PermissionTypeDataFetcher.getPermissionTypes())
+                .dataFetcher("getPermissionType", PermissionTypeDataFetcher.getPermissionType())
                 ;
 
     }
