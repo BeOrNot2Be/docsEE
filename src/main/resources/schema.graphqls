@@ -3,6 +3,30 @@ type FileType{
     title:String
 }
 
+type PermissionType{
+    permission_type_id:ID
+    title:String
+}
+
+type DocumentPermision{
+    document_permision_id:ID
+    author_id:Int
+    dependant_user_id:Int
+    Document:Document
+    type:PermissionType
+}
+
+type User{
+    user_id:ID
+    name:String
+    username:String
+    email:String
+    hash:String
+    verified:Boolean
+    permissionsAuthor:[DocumentPermision]
+    permissionsDependant:[DocumentPermision]
+}
+
 type DocumentFile{
     document_file_id:ID
     title:String

@@ -1,5 +1,6 @@
 package beornot2be.docsEE.model;
 
+import java.io.FilePermission;
 import java.io.Serializable;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -93,5 +94,8 @@ public class Document implements Serializable{
     public void setFiles( Set<DocumentFile> files) {
         this.files = files;
     }
+
+    @OneToOne(mappedBy = "document")
+    private DocumentPermision documentPermision ;
 
 }

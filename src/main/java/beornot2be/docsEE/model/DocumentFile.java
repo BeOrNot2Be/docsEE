@@ -70,7 +70,7 @@ public class DocumentFile implements Serializable {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type", nullable = false, unique=false, referencedColumnName = "file_type_id")
+    @JoinColumn(name = "file_type_id", nullable = false, unique=false, referencedColumnName = "file_type_id")
     private FileType type;
 
     public void setType(FileType type) {
