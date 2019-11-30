@@ -1,0 +1,11 @@
+language: java
+sudo: false # faster builds
+jdk:
+  - openjdk11
+
+script:
+  - ./mvnw package
+  - ./mvnw spring-boot:run
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

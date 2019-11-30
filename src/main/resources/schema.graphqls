@@ -8,12 +8,12 @@ type PermissionType{
     title:String
 }
 
-type DocumentPermision{
-    document_permision_id:ID
+type DocumentPermission{
+    document_permission_id:ID
     author_id:Int
     dependant_user_id:Int
-    Document:Document
-    type:PermissionType
+    document_id:Int
+    type:Int
 }
 
 type User{
@@ -23,8 +23,6 @@ type User{
     email:String
     hash:String
     verified:Boolean
-    permissionsAuthor:[DocumentPermision]
-    permissionsDependant:[DocumentPermision]
 }
 
 type DocumentFile{
@@ -33,7 +31,7 @@ type DocumentFile{
     link:String
     created_at:String
     document_id:Int
-    type:FileType
+    type:Int
 }
 
 type Document{
@@ -42,7 +40,6 @@ type Document{
     description:String
     created_at:String
     edited_date:String
-    files:[DocumentFile]
 }
 
 type Query{
@@ -59,10 +56,10 @@ type Query{
     getUser(user_id:ID):User
     getUsers:[User]
 
-    getDocumentPermision(document_permision_id:ID):DocumentPermision
-    getDocumentPermisions:[PermissionType]
-    getDependantPermision(user_id:ID):[DocumentPermision]
-    getAuthorPermision(user_id:ID):[DocumentPermision]
+    getDocumentPermission(document_permission_id:ID):DocumentPermission
+    getDocumentPermissions:[PermissionType]
+    getDependantPermission(user_id:ID):[DocumentPermission]
+    getAuthorPermission(user_id:ID):[DocumentPermission]
 
     getPermissionType(permission_type_id:ID):PermissionType
     getPermissionTypes:[PermissionType]
@@ -97,15 +94,15 @@ type Mutation{
         password:String
     ):Boolean
 
-    addDocumentPermision(
+    addDocumentPermission(
         document_id:Int,
         author_id:Int,
         dependant_user_id:Int,
         permission_type_id:Int
     ):Boolean
-    deleteDocumentPermision(document_permision_id:ID):Boolean
-    updateDocumentPermision(
-        document_permision_id:ID,
+    deleteDocumentPermission(document_permission_id:ID):Boolean
+    updateDocumentPermission(
+        document_permission_id:ID,
         document_id:Int,
         author_id:Int,
         dependant_user_id:Int,
