@@ -6,6 +6,7 @@ package com.beornot2be.docsEE;
 
 import com.beornot2be.docsEE.model.*;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -32,8 +33,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-//@SpringBootTest
-public class DocsEeApplicationTests {
+public class DocsEeApplicationTest {
 	private static BCryptPasswordEncoder passwordEncoder  =  new BCryptPasswordEncoder();;
 
 	@Autowired
@@ -66,11 +66,6 @@ public class DocsEeApplicationTests {
 		assertThat(permissionTypeRepository).isNotNull();
 		assertThat(entityManager).isNotNull();
 		assertThat(userRepository).isNotNull();
-	}
-
-	@Test
-	public void contextLoads() {
-		System.out.println("Testing ...");
 	}
 
 	@Test
