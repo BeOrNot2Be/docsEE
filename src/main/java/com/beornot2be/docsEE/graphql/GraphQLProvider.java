@@ -99,6 +99,7 @@ public class GraphQLProvider {
                 .dataFetcher("getDocument", DocumentDataFetcher.getDocument())
                 .dataFetcher("getDocumentsByAuthor", DocumentDataFetcher.getDocumentsByAuthor())
                 .dataFetcher("getDocumentsByDependant", DocumentDataFetcher.getDocumentsByDependant())
+                .dataFetcher("getDocumentsByUsr", DocumentDataFetcher.getDocumentsByUsr())
 
                 .dataFetcher("getDocumentFiles", DocumentFileDataFetcher.getDocumentFiles())
                 .dataFetcher("getDocumentFile", DocumentFileDataFetcher.getDocumentFile())

@@ -39,12 +39,23 @@ public class DocumentDataFetcher {
                 );
     }
 
+
+    public DataFetcher getDocumentsByUsr() {
+        return dataFetchingEnvironment -> DocumentApi
+                .getDocumentsByUsr(
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                );
+    }
+
+
     public DataFetcher addDocument() {
         return dataFetchingEnvironment -> DocumentApi
                 .addDocument(
                         dataFetchingEnvironment.getArgument("title"),
-                        dataFetchingEnvironment.getArgument("description")
-                );
+                        dataFetchingEnvironment.getArgument("description"),
+                        dataFetchingEnvironment.getArgument("author")
+
+                        );
     }
 
     public DataFetcher deleteDocument() {
@@ -59,7 +70,8 @@ public class DocumentDataFetcher {
                 updateDocument(
                         Integer.parseInt(dataFetchingEnvironment.getArgument("document_id")),
                         dataFetchingEnvironment.getArgument("title"),
-                        dataFetchingEnvironment.getArgument("description")
+                        dataFetchingEnvironment.getArgument("description"),
+                        dataFetchingEnvironment.getArgument("author")
                 );
     }
 }

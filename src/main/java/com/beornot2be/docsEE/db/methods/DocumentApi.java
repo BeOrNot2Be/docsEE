@@ -17,7 +17,7 @@ public class DocumentApi {
     }
 
 
-    public static boolean addDocument(String title, String description) {
+    public static boolean addDocument(String title, String description, Integer author) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
@@ -28,6 +28,7 @@ public class DocumentApi {
             Document document = new Document();
             document.setDescription(description);
             document.setTitle(title);
+            document.setAuthor_id(author);
 
             em.persist(document);
             et.commit();
@@ -62,6 +63,26 @@ public class DocumentApi {
         return docs;
     }
 
+    public static List<Document> getDocumentsByUsr(int user_id) {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String strQuery = "select d from Document d where d.author_id = :author_id";
+        TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
+        tq.setParameter("author_id", user_id);
+        List<Document> docs = null;
+        try {
+            docs = tq.getResultList();
+
+        }
+        catch(NoResultException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
+        return docs;
+    }
+
+
     public static List<Document> getDocumentsByPermDependant(int user_id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         String strQuery = "select d\n" +
@@ -82,6 +103,7 @@ public class DocumentApi {
         }
         return docs;
     }
+
 
     public static List<Document> getDocumentsByPermAuthor(int user_id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -151,7 +173,7 @@ public class DocumentApi {
         return docFile;
     }
 
-    public static boolean updateDocument(int document_id, String title, String description) {
+    public static boolean updateDocument(int document_id, String title, String description, Integer author) {
 
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction et = null;
@@ -165,6 +187,7 @@ public class DocumentApi {
             doc = em.find(Document.class, document_id);
             doc.setTitle(title);
             doc.setDescription(description);
+            doc.setAuthor_id(author);
 
             em.persist(doc);
             et.commit();

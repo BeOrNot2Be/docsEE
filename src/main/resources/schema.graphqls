@@ -32,6 +32,7 @@ type DocumentFile{
     created_at:String
     document_id:Int
     type:Int
+    author:Int
 }
 
 type Document{
@@ -51,6 +52,7 @@ type Query{
     getDocumentsFiles(document_id:ID):[DocumentFile]
     getDocumentsByAuthor(user_id:ID):[Document]
     getDocumentsByDependant(user_id:ID):[Document]
+    getDocumentsByUsr(user_id:ID):[Document]
 
     getDocumentFile(document_file_id:ID):DocumentFile
     getDocumentFiles:[DocumentFile]
@@ -68,7 +70,6 @@ type Query{
 
     getPermissionType(permission_type_id:ID):PermissionType
     getPermissionTypes:[PermissionType]
-
 }
 
 type Mutation{

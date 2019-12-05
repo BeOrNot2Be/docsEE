@@ -40,7 +40,16 @@ public class Document implements Serializable{
         return title;
     }
 
+    @JoinColumn(name = "author_id", nullable = false, unique=false)
+    private int author_id;
 
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
+    }
+
+    public int getAuthor_id() {
+        return author_id;
+    }
 
     @Column(name = "description", nullable = false)
     private String description;
