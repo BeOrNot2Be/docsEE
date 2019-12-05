@@ -22,7 +22,7 @@ public class DocumentPermission implements Serializable {
     }
 
 
-    @Column(name = "author_id", nullable = false, unique=false)
+    @JoinColumn(name = "author_id", nullable = false, unique=false)
     private int author_id;
 
     public void setAuthor_id(int author_id) {
@@ -33,11 +33,11 @@ public class DocumentPermission implements Serializable {
         return author_id;
     }
 
-    @Column(name = "document_id", nullable = false, unique=false)
+    @JoinColumn(name = "document_id", nullable = false, unique=false)
     private int document_id;
 
-    public void setDocument_id(int author_id) {
-        this.author_id = author_id;
+    public void setDocument_id(int document_id) {
+        this.document_id = document_id;
     }
 
     public int getDocument_id() {
@@ -45,7 +45,7 @@ public class DocumentPermission implements Serializable {
     }
 
 
-    @Column(name = "dependant_user_id", nullable = false, unique=false)
+    @JoinColumn(name = "dependant_user_id", nullable = false, unique=false)
     private int dependant_user_id;
 
     public void setDependant_user_id(int dependant_user_id) {
@@ -56,15 +56,15 @@ public class DocumentPermission implements Serializable {
         return dependant_user_id;
     }
 
-    @Column(name = "permission_type_id", nullable = false, unique=false)
-    private int type;
+    @JoinColumn(name = "permission_type_id", nullable = false, unique=false)
+    private int permission_type_id;
 
-    public void setType(int type) {
-        this.type = type;
+    public void setType(int permission_type_id) {
+        this.permission_type_id = permission_type_id;
     }
 
     public int getType() {
-        return type;
+        return permission_type_id;
     }
 
 }

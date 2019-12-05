@@ -101,6 +101,7 @@ public class DocsEeApplicationTest {
 		Document d = new Document();
 		d.setTitle("recite");
 		d.setDescription("layer->bank");
+		d.setAuthor_id(1);
 		entityManager.persist(d);
 		entityManager.flush();
 
@@ -119,10 +120,17 @@ public class DocsEeApplicationTest {
 
 	@Test
 	public void DocumentFileModel(){
+		Document d = new Document();
+		d.setTitle("recite");
+		d.setDescription("layer->bank");
+		d.setAuthor_id(1);
+		entityManager.persist(d);
+		entityManager.flush();
+
 		DocumentFile df = new DocumentFile();
 		df.setType(1);
 		df.setLink("http://somegfrvjgr.com/pic/322342.jpg");
-		df.setDocument_id(1);
+		df.setDocument_id(d.getDocument_id());
 		df.setTitle("322342.jpg");
 		entityManager.persist(df);
 		entityManager.flush();
@@ -136,7 +144,7 @@ public class DocsEeApplicationTest {
 		assertEquals("front page", testing_df2.getTitle());
 		assertEquals(1, documentFileRepository.count());
 
-		documentFileRepository.deleteById(df.getDocument_id());
+		documentFileRepository.deleteById(df.getDocument_file_id());
 		assertEquals(0, documentFileRepository.count());
 	}
 
