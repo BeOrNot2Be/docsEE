@@ -25,19 +25,6 @@ public class DocumentPermissionApi {
             et = em.getTransaction();
             et.begin();
 
-            String queryType = "SELECT pt FROM Permission_Type pt WHERE pt.permission_type_id = :permission_type_id";
-            TypedQuery<PermissionType> tqType = em.createQuery(queryType, PermissionType.class);
-            tqType.setParameter("permission_type_id", permission_type_id);
-            PermissionType permissionType = null;
-            permissionType = tqType.getSingleResult();
-
-            String queryDoc = "SELECT d FROM Document d WHERE d.document_id = :document_id";
-            TypedQuery<Document> tqDoc = em.createQuery(queryDoc, Document.class);
-            tqDoc.setParameter("document_id", document_id);
-            Document document = null;
-            document = tqDoc.getSingleResult();
-
-
             DocumentPermission docPer = new DocumentPermission();
             docPer.setDocument_id(document_id);
             docPer.setAuthor_id(author_id);
@@ -152,19 +139,6 @@ public class DocumentPermissionApi {
             TypedQuery<DocumentPermission> tq = em.createQuery(query, DocumentPermission.class);
             tq.setParameter("document_permission_id", document_permission_id);
             docPer = tq.getSingleResult();
-
-
-            String queryType = "SELECT pt FROM Permission_Type pt WHERE pt.permission_type_id = :permission_type_id";
-            TypedQuery<PermissionType> tqType = em.createQuery(queryType, PermissionType.class);
-            tqType.setParameter("permission_type_id", permission_type_id);
-            PermissionType permissionType = null;
-            permissionType = tqType.getSingleResult();
-
-            String queryDoc = "SELECT d FROM Document d WHERE d.document_id = :document_id";
-            TypedQuery<Document> tqDoc = em.createQuery(queryDoc, Document.class);
-            tqDoc.setParameter("document_id", document_id);
-            Document document = null;
-            document = tqDoc.getSingleResult();
 
 
             docPer.setDocument_id(document_id);

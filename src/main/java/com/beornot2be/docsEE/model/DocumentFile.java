@@ -80,4 +80,8 @@ public class DocumentFile implements Serializable {
         return type;
     }
 
+    @ManyToOne
+    @JoinColumn(name="document_id", nullable=false, insertable = false, updatable = false)
+    private Document document;
+
 }

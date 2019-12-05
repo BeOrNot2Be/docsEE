@@ -3,6 +3,8 @@ package com.beornot2be.docsEE.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Optional;
+import java.util.Set;
 
 
 @Entity
@@ -79,4 +81,14 @@ public class Document implements Serializable{
         return edited_date;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "document")
+    private Set<DocumentFile> files;
+
+    public Optional getFiles() {
+        return Optional.ofNullable(files);
+    }
+
+    public void setFiles( Set<DocumentFile> files) {
+        this.files = files;
+    }
 }

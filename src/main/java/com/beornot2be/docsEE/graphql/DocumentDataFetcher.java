@@ -25,6 +25,20 @@ public class DocumentDataFetcher {
                 );
     }
 
+    public DataFetcher getDocumentsByAuthor() {
+        return dataFetchingEnvironment -> DocumentApi
+                .getDocumentsByPermAuthor(
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                );
+    }
+
+    public DataFetcher getDocumentsByDependant() {
+        return dataFetchingEnvironment -> DocumentApi
+                .getDocumentsByPermDependant(
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                );
+    }
+
     public DataFetcher addDocument() {
         return dataFetchingEnvironment -> DocumentApi
                 .addDocument(

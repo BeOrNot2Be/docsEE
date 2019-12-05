@@ -2,6 +2,7 @@ package com.beornot2be.docsEE.db.methods;
 
 import com.beornot2be.docsEE.model.Document;
 import com.beornot2be.docsEE.model.DocumentFile;
+import com.beornot2be.docsEE.model.DocumentPermission;
 
 import javax.persistence.*;
 import java.util.List;
@@ -60,6 +61,49 @@ public class DocumentApi {
         }
         return docs;
     }
+
+    public static List<Document> getDocumentsByPermDependant(int user_id) {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String strQuery = "select d\n" +
+                "from Document d, DocumentPermission dp\n" +
+                "where d.document_id = dp.document_id AND dp.dependant_user_id = :dependant_user_id";
+        TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
+        tq.setParameter("dependant_user_id", user_id);
+        List<Document> docs = null;
+        try {
+            docs = tq.getResultList();
+
+        }
+        catch(NoResultException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
+        return docs;
+    }
+
+    public static List<Document> getDocumentsByPermAuthor(int user_id) {
+        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        String strQuery = "select d\n" +
+                "from Document d, DocumentPermission dp\n" +
+                "where d.document_id = dp.document_id AND dp.author_id = :author_id";
+        TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
+        tq.setParameter("author_id", user_id);
+        List<Document> docs = null;
+        try {
+            docs = tq.getResultList();
+
+        }
+        catch(NoResultException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            em.close();
+        }
+        return docs;
+    }
+
 
     public static Document getDocument(int document_id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
