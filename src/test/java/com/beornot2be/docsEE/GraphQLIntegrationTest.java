@@ -40,6 +40,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertEquals;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -104,36 +106,214 @@ public class GraphQLIntegrationTest {
 
     @Test
     public void addUser() throws Exception {
-        // Given
-        String query = "{\"query\":" +
-                            "\"query {\\n" +
-                                "getUsers{\\n" +
-                                    "user_id\\n" +
-                                  "\\tname\\n" +
-                                  "\\tusername\\n" +
-                                  "\\temail\\n" +
-                                  "\\thash\\n" +
-                                  "\\tverified\\n" +
-                                  "}\\n" +
-                                "}\\n" +
-                        "\"}";
+        String query = "mutation {" +
+                "addUser(" +
+                " name: \\\"Boii47\\\"" +
+                " username: \\\"jagkb12286\\\"" +
+                " email: \\\"jhkhth56@gmail.com\\\"" +
+                " password: \\\"ewkjdfkwdfd\\\"" +
+                ")" +
+                "}";
+        final var postResult = getPostResult(query);
 
-        // When
-        final var postResult = mockMvc.perform(post("/graphql")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(query))
-                .andExpect(request().asyncStarted())
-                .andDo(MockMvcResultHandlers.log())
-                .andReturn();
-
-        // Then
         mockMvc.perform(asyncDispatch(postResult))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$.errors").doesNotExist())
-                .andExpect(jsonPath("$.data.getUsers").exists());
+                .andExpect(jsonPath("$.data.addUser").exists())
+                .andExpect(jsonPath("$.data.addUser",  is(true)));
 
-        System.out.println( userRepository.findById(2).orElse(null) );
-        System.out.println(userRepository.count());
+
+        String query2 = "mutation {" +
+                "addUser(" +
+                " name: \\\"Fill ka\\\"" +
+                " username: \\\"filip_kalin\\\"" +
+                " email: \\\"chaobabe@gmail.com\\\"" +
+                " password: \\\"root1243\\\"" +
+                ")" +
+                "}";
+        final var postResult2 = getPostResult(query2);
+
+        mockMvc.perform(asyncDispatch(postResult2))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addUser").exists())
+                .andExpect(jsonPath("$.data.addUser",  is(true)));
+
+        String query3 = "mutation {" +
+                "addUser(" +
+                " name: \\\"Fill ka\\\"" +
+                " username: \\\"filip_kalin\\\"" +
+                " email: \\\"chaobabe@gmail.com\\\"" +
+                " password: \\\"root1243\\\"" +
+                ")" +
+                "}";
+        final var postResult3 = getPostResult(query3);
+
+        mockMvc.perform(asyncDispatch(postResult3))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addUser").exists())
+                .andExpect(jsonPath("$.data.addUser",  is(false)));
+
+        String query4 = "mutation {" +
+                "addUser(" +
+                " name: \\\"Tim Lee\\\"" +
+                " username: \\\"timchoap\\\"" +
+                " email: \\\"maxaviloj@gmail.com\\\"" +
+                " password: \\\"admonbomba3\\\"" +
+                ")" +
+                "}";
+
+        final var postResult4 = getPostResult(query4);
+
+        mockMvc.perform(asyncDispatch(postResult4))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addUser").exists())
+                .andExpect(jsonPath("$.data.addUser",  is(true)));
+    }
+
+    @Test
+    public void getUsers() throws Exception {
+        String query = "query {" +
+                "getUsers{" +
+                " user_id" +
+                " name" +
+                " username" +
+                " email" +
+                " hash" +
+                " verified" +
+                "}" +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getUsers").exists())
+                .andExpect(jsonPath("$.data.getUsers[0].user_id").value("1"))
+                .andExpect(jsonPath("$.data.getUsers[0].name").value("Boii47"))
+                .andExpect(jsonPath("$.data.getUsers[0].username").value("jagkb12286"))
+                .andExpect(jsonPath("$.data.getUsers[0].email").value("jhkhth56@gmail.com"))
+                .andExpect(jsonPath("$.data.getUsers[0].hash").isString())
+                .andExpect(jsonPath("$.data.getUsers[0].verified", is(false)))
+                .andExpect(jsonPath("$.data.getUsers[*]", hasSize(3)));
+    }
+
+    @Test
+    public void addFileType() throws Exception {
+        String query = "mutation {" +
+                "addFileType(" +
+                " title: \\\"image\\\"" +
+                ") " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addFileType").exists())
+                .andExpect(jsonPath("$.data.addFileType", is(true)));
+    }
+
+    @Test
+    public void addDoc() throws Exception {
+        String query = "mutation {" +
+                "addDocument(" +
+                " title: \\\"New file #1\\\"" +
+                " description: \\\"Some description for the file that I don't know\\\"" +
+                " author_id: 1" +
+                  ") " +
+                "addDocumentFile(" +
+                " title: \\\"DSC3435\\\"" +
+                " link: \\\"https://www.danielwellington.com/media/staticbucket/media/catalog/product/d/w/dw-petite-28-melrose-black-cat.png\\\"" +
+                " document_id: 1" +
+                " type: 1" +
+                ") " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addDocument").exists())
+                .andExpect(jsonPath("$.data.addDocument", is(true)))
+                .andExpect(jsonPath("$.data.addDocumentFile").exists())
+                .andExpect(jsonPath("$.data.addDocumentFile", is(true)));
+    }
+
+
+    @Test
+    public void addDocFile() throws Exception {
+        String query = "mutation {" +
+                "addDocumentFile(" +
+                " title: \\\"DSC5656\\\"" +
+                " link: \\\"https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg\\\"" +
+                " document_id: 1" +
+                " type: 1" +
+                ") " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addDocumentFile").exists())
+                .andExpect(jsonPath("$.data.addDocumentFile", is(true)));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private MvcResult getPostResult(String query) throws Exception {
+        String realQuery = "{\"query\":\""+
+                query +
+                "\"}";
+        return mockMvc.perform(post("/graphql")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(realQuery))
+                .andExpect(request().asyncStarted())
+                .andReturn();
+    }
+
+    private MvcResult getPostResult(String query, boolean log) throws Exception {
+        String realQuery = "{\"query\":\""+
+                query +
+                "\"}";
+        if (log) {
+            return mockMvc.perform(post("/graphql")
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .content(realQuery))
+                    .andExpect(request().asyncStarted())
+                    .andDo(MockMvcResultHandlers.log())
+                    .andReturn();
+        } else {
+            return mockMvc.perform(post("/graphql")
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                    .content(realQuery))
+                    .andExpect(request().asyncStarted())
+                    .andReturn();
+        }
     }
 }

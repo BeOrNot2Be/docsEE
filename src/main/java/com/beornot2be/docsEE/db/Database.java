@@ -38,20 +38,14 @@ public class Database {
             profile = activeProfiles[0];
         else
             profile = env.getDefaultProfiles()[0];
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         switch(profile) {
             case "default":
-                System.out.println("def profile");
                 ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("docsEE");
                 break;
-
             case "test":
-                System.out.println("test profile");
                 ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("docsEETest");
                 break;
-
             default:
-                System.out.println("def!!!!!!!!!!!");
                 ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("docsEE");
         }
     }

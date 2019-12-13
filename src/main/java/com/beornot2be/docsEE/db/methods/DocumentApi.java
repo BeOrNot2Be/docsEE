@@ -16,7 +16,7 @@ public class DocumentApi {
     Database db;
 
 
-    public boolean addDocument(String title, String description, Integer author) {
+    public boolean addDocument(String title, String description, Integer author_id) {
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
@@ -27,7 +27,7 @@ public class DocumentApi {
             Document document = new Document();
             document.setDescription(description);
             document.setTitle(title);
-            document.setAuthor_id(author);
+            document.setAuthor_id(author_id);
 
             em.persist(document);
             et.commit();
@@ -62,11 +62,11 @@ public class DocumentApi {
         return docs;
     }
 
-    public List<Document> getDocumentsByUsr(int user_id) {
+    public List<Document> getDocumentsByUsr(int author_id) {
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d from Document d where d.author_id = :author_id";
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
-        tq.setParameter("author_id", user_id);
+        tq.setParameter("author_id", author_id);
         List<Document> docs = null;
         try {
             docs = tq.getResultList();
@@ -82,13 +82,13 @@ public class DocumentApi {
     }
 
 
-    public List<Document> getDocumentsByPermDependant(int user_id) {
+    public List<Document> getDocumentsByPermDependant(int author_id) {
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d\n" +
                 "from Document d, DocumentPermission dp\n" +
                 "where d.document_id = dp.document_id AND dp.dependant_user_id = :dependant_user_id";
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
-        tq.setParameter("dependant_user_id", user_id);
+        tq.setParameter("dependant_user_id", author_id);
         List<Document> docs = null;
         try {
             docs = tq.getResultList();
@@ -104,13 +104,13 @@ public class DocumentApi {
     }
 
 
-    public List<Document> getDocumentsByPermAuthor(int user_id) {
+    public List<Document> getDocumentsByPermAuthor(int author_id) {
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d\n" +
                 "from Document d, DocumentPermission dp\n" +
                 "where d.document_id = dp.document_id AND dp.author_id = :author_id";
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
-        tq.setParameter("author_id", user_id);
+        tq.setParameter("author_id", author_id);
         List<Document> docs = null;
         try {
             docs = tq.getResultList();
@@ -172,7 +172,7 @@ public class DocumentApi {
         return docFile;
     }
 
-    public boolean updateDocument(int document_id, String title, String description, Integer author) {
+    public boolean updateDocument(int document_id, String title, String description, Integer author_id) {
 
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
@@ -186,7 +186,7 @@ public class DocumentApi {
             doc = em.find(Document.class, document_id);
             doc.setTitle(title);
             doc.setDescription(description);
-            doc.setAuthor_id(author);
+            doc.setAuthor_id(author_id);
 
             em.persist(doc);
             et.commit();

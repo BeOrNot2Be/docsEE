@@ -32,14 +32,14 @@ public class DocumentDataFetcher {
     public DataFetcher getDocumentsByAuthor() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByPermAuthor(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
                 );
     }
 
     public DataFetcher getDocumentsByDependant() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByPermDependant(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
                 );
     }
 
@@ -47,7 +47,7 @@ public class DocumentDataFetcher {
     public DataFetcher getDocumentsByUsr() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByUsr(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
                 );
     }
 
@@ -57,8 +57,7 @@ public class DocumentDataFetcher {
                 .addDocument(
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("description"),
-                        dataFetchingEnvironment.getArgument("author")
-
+                        dataFetchingEnvironment.getArgument("author_id")
                         );
     }
 
@@ -75,7 +74,7 @@ public class DocumentDataFetcher {
                         Integer.parseInt(dataFetchingEnvironment.getArgument("document_id")),
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("description"),
-                        dataFetchingEnvironment.getArgument("author")
+                        dataFetchingEnvironment.getArgument("author_id")
                 );
     }
 }
