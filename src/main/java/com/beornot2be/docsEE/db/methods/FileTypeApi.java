@@ -1,22 +1,21 @@
 package com.beornot2be.docsEE.db.methods;
 
+import com.beornot2be.docsEE.db.Database;
 import com.beornot2be.docsEE.model.FileType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Component
 public class FileTypeApi {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    @Autowired
+    Database db;
 
-
-    public FileTypeApi(EntityManagerFactory em) {
-        ENTITY_MANAGER_FACTORY = em;
-    }
-
-
-    public static boolean addFileType(String title) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean addFileType(String title) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
@@ -40,8 +39,8 @@ public class FileTypeApi {
         return  accomplished;
     }
 
-    public static List<FileType> getFileTypes() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<FileType> getFileTypes() {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String strQuery = "SELECT f FROM FileType f WHERE f.file_type_id IS NOT NULL";
 
@@ -59,8 +58,8 @@ public class FileTypeApi {
         return fileTypes;
     }
 
-    public static FileType getFileType(int file_type_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public FileType getFileType(int file_type_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT f FROM FileType f WHERE f.file_type_id = :file_type_id";
 
@@ -81,9 +80,9 @@ public class FileTypeApi {
         return fileType;
     }
 
-    public static boolean updateFileType(int file_type_id, String title) {
+    public boolean updateFileType(int file_type_id, String title) {
 
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
 
         FileType fileType = null;
@@ -109,8 +108,8 @@ public class FileTypeApi {
         return  accomplished;
     }
 
-    public static boolean deleteFileType(int file_type_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean deleteFileType(int file_type_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         FileType fileType = null;
         boolean accomplished = false;

@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-2. This file defines classes you wish to persist. How these classes are
-mapped to database tables. Database driver, location, userid and pw
- -->
-
 <persistence version="2.0"
              xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
     <!-- Define a name used to get an entity manager. Define that you will
     complete transactions with the DB  -->
-    <persistence-unit name="docsEE" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="docsEETest" transaction-type="RESOURCE_LOCAL">
 
         <!-- Define the class for Hibernate which implements JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -24,14 +18,15 @@ mapped to database tables. Database driver, location, userid and pw
         <class>com.beornot2be.docsEE.model.PermissionType</class>
 
         <properties>
-            <!-- Driver for DB database -->
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <!-- URL for DB -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/docsEE" />
-            <!-- Username -->
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <!-- Password -->
-            <property name="javax.persistence.jdbc.password" value="root" />
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+            <property name="javax.persistence.jdbc.url"    value="jdbc:h2:mem:test" />
+            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.password" value="" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="show_sql" value="true"/>
+            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -1,22 +1,21 @@
 package com.beornot2be.docsEE.db.methods;
 
+import com.beornot2be.docsEE.db.Database;
 import com.beornot2be.docsEE.model.PermissionType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Component
 public class PermissionTypeApi {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    @Autowired
+    Database db;
 
-
-    public PermissionTypeApi(EntityManagerFactory em) {
-        ENTITY_MANAGER_FACTORY = em;
-    }
-
-
-    public static boolean addPermissionType(String title) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean addPermissionType(String title) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
@@ -40,8 +39,8 @@ public class PermissionTypeApi {
         return  accomplished;
     }
 
-    public static List<PermissionType> getPermissionTypes() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<PermissionType> getPermissionTypes() {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String strQuery = "SELECT pt FROM Permission_Type pt WHERE pt.permission_type_id IS NOT NULL";
 
@@ -59,8 +58,8 @@ public class PermissionTypeApi {
         return pt;
     }
 
-    public static PermissionType getPermissionType(int permission_type_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public PermissionType getPermissionType(int permission_type_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT pt FROM Permission_Type pt WHERE pt.permission_type_id = :permission_type_id";
 
@@ -81,9 +80,9 @@ public class PermissionTypeApi {
         return pt;
     }
 
-    public static boolean updatePermissionType(int permission_type_id, String title) {
+    public boolean updatePermissionType(int permission_type_id, String title) {
 
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
 
         PermissionType pt = null;
@@ -109,8 +108,8 @@ public class PermissionTypeApi {
         return  accomplished;
     }
 
-    public static boolean deletePermissionType(int permission_type_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean deletePermissionType(int permission_type_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         PermissionType pt = null;
         boolean accomplished = false;

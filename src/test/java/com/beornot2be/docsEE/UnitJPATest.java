@@ -1,39 +1,20 @@
 package com.beornot2be.docsEE;
 
-//import com.docsEE.db.methods.DocumentFileApi;
-//import com.docsEE.model.*;
-
-
 import com.beornot2be.docsEE.model.*;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.HashSet;
-//import org.junit.Test;
-/*
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
-*/
-
-//import java.util.HashSet;
-//import java.util.Set;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class DocsEeApplicationTest {
+public class UnitJPATest {
 	private static BCryptPasswordEncoder passwordEncoder  =  new BCryptPasswordEncoder();;
 
 	@Autowired
@@ -75,8 +56,7 @@ public class DocsEeApplicationTest {
 		u.setUsername("GarryTheSnail03");
 		u.setEmail("GarryTheSnail@gmail.com");
 		u.setHash(passwordEncoder.encode("goodGarryTheSnail"));
-		entityManager.persist(u);
-		entityManager.flush();
+		userRepository.save(u);
 
 		User testing_user = userRepository.findById(u.getUser_id()).orElse(null);
 		assertEquals(u.getName(), testing_user.getName());
@@ -86,7 +66,7 @@ public class DocsEeApplicationTest {
 		assertEquals(true, passwordEncoder.matches("goodGarryTheSnail", testing_user.getHash()));
 
 		u.setVerified(true);
-		entityManager.merge(u);
+		userRepository.save(u);
 
 		User testing_user2 = userRepository.findById(u.getUser_id()).orElse(null);
 		assertEquals(true, testing_user2.getVerified());
@@ -102,14 +82,13 @@ public class DocsEeApplicationTest {
 		d.setTitle("recite");
 		d.setDescription("layer->bank");
 		d.setAuthor_id(1);
-		entityManager.persist(d);
-		entityManager.flush();
+		documentRepository.save(d);
 
 		Document testing_doc = documentRepository.findById(d.getDocument_id()).orElse(null);
 		assertEquals(d.getTitle(), testing_doc.getTitle());
 
 		testing_doc.setDescription("layer->bank->accountant");
-		entityManager.merge(testing_doc);
+		documentRepository.save(testing_doc);
 		Document testing_doc2 = documentRepository.findById(d.getDocument_id()).orElse(null);
 		assertEquals("layer->bank->accountant", testing_doc2.getDescription());
 		assertEquals(1, documentRepository.count());
@@ -124,22 +103,20 @@ public class DocsEeApplicationTest {
 		d.setTitle("recite");
 		d.setDescription("layer->bank");
 		d.setAuthor_id(1);
-		entityManager.persist(d);
-		entityManager.flush();
+		documentRepository.save(d);
 
 		DocumentFile df = new DocumentFile();
 		df.setType(1);
 		df.setLink("http://somegfrvjgr.com/pic/322342.jpg");
 		df.setDocument_id(d.getDocument_id());
 		df.setTitle("322342.jpg");
-		entityManager.persist(df);
-		entityManager.flush();
+		documentFileRepository.save(df);
 
 		DocumentFile testing_df = documentFileRepository.findById(df.getDocument_file_id()).orElse(null);
 		assertEquals(df.getTitle(), testing_df.getTitle());
 
 		testing_df.setTitle("front page");
-		entityManager.merge(testing_df);
+		documentFileRepository.save(testing_df);
 		DocumentFile testing_df2 = documentFileRepository.findById(df.getDocument_file_id()).orElse(null);
 		assertEquals("front page", testing_df2.getTitle());
 		assertEquals(1, documentFileRepository.count());
@@ -152,14 +129,13 @@ public class DocsEeApplicationTest {
 	public void FileTypeModel(){
 		FileType t = new FileType();
 		t.setTitle("jpg");
-		entityManager.persist(t);
-		entityManager.flush();
+		fileTypeRepository.save(t);
 
 		FileType testing_t = fileTypeRepository.findById(t.getFile_type_id()).orElse(null);
 		assertEquals(t.getTitle(), testing_t.getTitle());
 
 		t.setTitle("png");
-		entityManager.merge(t);
+		fileTypeRepository.save(t);
 		FileType testing_t2 = fileTypeRepository.findById(t.getFile_type_id()).orElse(null);
 		assertEquals("png", testing_t2.getTitle());
 		assertEquals(1, fileTypeRepository.count());
@@ -172,14 +148,13 @@ public class DocsEeApplicationTest {
 	public void PermissionTypeModel(){
 		PermissionType t = new PermissionType();
 		t.setTitle("edit");
-		entityManager.persist(t);
-		entityManager.flush();
+		permissionTypeRepository.save(t);
 
 		PermissionType testing_t = permissionTypeRepository.findById(t.getPermission_type_id()).orElse(null);
 		assertEquals(t.getTitle(), testing_t.getTitle());
 
 		t.setTitle("read");
-		entityManager.merge(t);
+		permissionTypeRepository.save(t);
 		PermissionType testing_t2 = permissionTypeRepository.findById(t.getPermission_type_id()).orElse(null);
 		assertEquals("read", testing_t2.getTitle());
 		assertEquals(1, permissionTypeRepository.count());
@@ -195,8 +170,7 @@ public class DocsEeApplicationTest {
 		dp.setDependant_user_id(2);
 		dp.setAuthor_id(1);
 		dp.setType(1);
-		entityManager.persist(dp);
-		entityManager.flush();
+		documentPermissionRepository.save(dp);
 
 		DocumentPermission testing_dp = documentPermissionRepository.findById(dp.getDocument_permission_id()).orElse(null);
 		assertEquals(dp.getDocument_id(), testing_dp.getDocument_id());
