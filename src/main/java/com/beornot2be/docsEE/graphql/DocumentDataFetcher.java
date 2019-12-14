@@ -2,10 +2,14 @@ package com.beornot2be.docsEE.graphql;
 
 import com.beornot2be.docsEE.db.methods.DocumentApi;
 import graphql.schema.DataFetcher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DocumentDataFetcher {
+
+    @Autowired
+    DocumentApi DocumentApi;
 
     public DataFetcher getDocuments() {
         return dataFetchingEnvironment -> DocumentApi.getDocuments();
@@ -28,7 +32,7 @@ public class DocumentDataFetcher {
     public DataFetcher getDocumentsByAuthor() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByPermAuthor(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
                 );
     }
 
@@ -53,8 +57,7 @@ public class DocumentDataFetcher {
                 .addDocument(
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("description"),
-                        dataFetchingEnvironment.getArgument("author")
-
+                        dataFetchingEnvironment.getArgument("author_id")
                         );
     }
 
@@ -71,7 +74,7 @@ public class DocumentDataFetcher {
                         Integer.parseInt(dataFetchingEnvironment.getArgument("document_id")),
                         dataFetchingEnvironment.getArgument("title"),
                         dataFetchingEnvironment.getArgument("description"),
-                        dataFetchingEnvironment.getArgument("author")
+                        dataFetchingEnvironment.getArgument("author_id")
                 );
     }
 }

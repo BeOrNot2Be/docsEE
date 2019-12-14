@@ -16,12 +16,12 @@ mapped to database tables. Database driver, location, userid and pw
         <!-- Define the class for Hibernate which implements JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Define the object that should be persisted in the database -->
-        <class>com.docsEE.model.Document</class>
-        <class>com.docsEE.model.DocumentFile</class>
-        <class>com.docsEE.model.FileType</class>
-        <class>com.docsEE.model.DocumentPermission</class>
-        <class>com.docsEE.model.User</class>
-        <class>com.docsEE.model.PermissionType</class>
+        <class>com.beornot2be.docsEE.model.Document</class>
+        <class>com.beornot2be.docsEE.model.DocumentFile</class>
+        <class>com.beornot2be.docsEE.model.FileType</class>
+        <class>com.beornot2be.docsEE.model.DocumentPermission</class>
+        <class>com.beornot2be.docsEE.model.User</class>
+        <class>com.beornot2be.docsEE.model.PermissionType</class>
 
         <properties>
             <!-- Driver for DB database -->

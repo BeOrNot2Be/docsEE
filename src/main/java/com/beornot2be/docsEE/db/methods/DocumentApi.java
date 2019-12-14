@@ -1,24 +1,23 @@
 package com.beornot2be.docsEE.db.methods;
 
+import com.beornot2be.docsEE.db.Database;
 import com.beornot2be.docsEE.model.Document;
 import com.beornot2be.docsEE.model.DocumentFile;
 import com.beornot2be.docsEE.model.DocumentPermission;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.List;
 
+@Component
 public class DocumentApi {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    @Autowired
+    Database db;
 
 
-    public DocumentApi(EntityManagerFactory em) {
-        ENTITY_MANAGER_FACTORY = em;
-    }
-
-
-    public static boolean addDocument(String title, String description, Integer author) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean addDocument(String title, String description, Integer author_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
@@ -28,7 +27,7 @@ public class DocumentApi {
             Document document = new Document();
             document.setDescription(description);
             document.setTitle(title);
-            document.setAuthor_id(author);
+            document.setAuthor_id(author_id);
 
             em.persist(document);
             et.commit();
@@ -44,8 +43,8 @@ public class DocumentApi {
         return  accomplished;
     }
 
-    public static List<Document> getDocuments() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<Document> getDocuments() {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String strQuery = "SELECT d FROM Document d WHERE d.document_id IS NOT NULL";
 
@@ -63,8 +62,8 @@ public class DocumentApi {
         return docs;
     }
 
-    public static List<Document> getDocumentsByUsr(int user_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<Document> getDocumentsByUsr(int user_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d from Document d where d.author_id = :author_id";
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
         tq.setParameter("author_id", user_id);
@@ -83,8 +82,8 @@ public class DocumentApi {
     }
 
 
-    public static List<Document> getDocumentsByPermDependant(int user_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<Document> getDocumentsByPermDependant(int user_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d\n" +
                 "from Document d, DocumentPermission dp\n" +
                 "where d.document_id = dp.document_id AND dp.dependant_user_id = :dependant_user_id";
@@ -105,13 +104,13 @@ public class DocumentApi {
     }
 
 
-    public static List<Document> getDocumentsByPermAuthor(int user_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<Document> getDocumentsByPermAuthor(int author_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "select d\n" +
                 "from Document d, DocumentPermission dp\n" +
                 "where d.document_id = dp.document_id AND dp.author_id = :author_id";
         TypedQuery<Document> tq = em.createQuery(strQuery, Document.class);
-        tq.setParameter("author_id", user_id);
+        tq.setParameter("author_id", author_id);
         List<Document> docs = null;
         try {
             docs = tq.getResultList();
@@ -127,8 +126,8 @@ public class DocumentApi {
     }
 
 
-    public static Document getDocument(int document_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public Document getDocument(int document_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT d FROM Document d WHERE d.document_id = :document_id";
 
@@ -150,8 +149,8 @@ public class DocumentApi {
         return doc;
     }
 
-    public static List<DocumentFile> getDocumentFiles(int document_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<DocumentFile> getDocumentFiles(int document_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT df FROM DocumentFile df WHERE df.document_id = :document_id";
 
@@ -173,9 +172,9 @@ public class DocumentApi {
         return docFile;
     }
 
-    public static boolean updateDocument(int document_id, String title, String description, Integer author) {
+    public boolean updateDocument(int document_id, String title, String description, Integer author_id) {
 
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
 
         Document doc = null;
@@ -187,7 +186,7 @@ public class DocumentApi {
             doc = em.find(Document.class, document_id);
             doc.setTitle(title);
             doc.setDescription(description);
-            doc.setAuthor_id(author);
+            doc.setAuthor_id(author_id);
 
             em.persist(doc);
             et.commit();
@@ -203,8 +202,8 @@ public class DocumentApi {
         return  accomplished;
     }
 
-    public static boolean deleteDocument(int document_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean deleteDocument(int document_id) {
+        EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         Document doc = null;
         boolean accomplished = false;

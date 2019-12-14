@@ -2,10 +2,14 @@ package com.beornot2be.docsEE.graphql;
 
 import com.beornot2be.docsEE.db.methods.UserApi;
 import graphql.schema.DataFetcher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserDataFetcher {
+
+    @Autowired
+    UserApi UserApi;
 
     public DataFetcher getUsers() {
         return dataFetchingEnvironment -> UserApi.getUsers();

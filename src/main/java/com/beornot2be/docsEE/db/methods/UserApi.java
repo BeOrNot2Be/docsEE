@@ -1,26 +1,29 @@
 package com.beornot2be.docsEE.db.methods;
 
+import com.beornot2be.docsEE.db.Database;
 import com.beornot2be.docsEE.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Component
 public class UserApi {
 
-    private static BCryptPasswordEncoder passwordEncoder  =  new BCryptPasswordEncoder();;
-    //demo -> refactor to bean
-
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY;
-
-
-    public UserApi(EntityManagerFactory em) {
-        ENTITY_MANAGER_FACTORY = em;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    Database db;
 
-    public static boolean addUser(String name, String username, String email, String password) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean addUser(String name, String username, String email, String password) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
@@ -29,7 +32,7 @@ public class UserApi {
 
             User user = new User();
 
-            user.setHash(passwordEncoder.encode(password));
+            user.setHash(passwordEncoder().encode(password));
             user.setName(name);
             user.setUsername(username);
             user.setEmail(email);
@@ -49,9 +52,8 @@ public class UserApi {
         return  accomplished;
     }
 
-    public static List<User> getUsers() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-
+    public List<User> getUsers() {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         String strQuery = "SELECT u FROM User u WHERE u.user_id IS NOT NULL";
 
         TypedQuery<User> tq = em.createQuery(strQuery, User.class);
@@ -68,8 +70,8 @@ public class UserApi {
         return users;
     }
 
-    public static User getUser(int user_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public User getUser(int user_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT u FROM User u WHERE u.user_id = :user_id";
 
@@ -91,8 +93,8 @@ public class UserApi {
     }
 
     /*
-    public static List<DocumentFile> getDocumentFiles(int document_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<DocumentFile> getDocumentFiles(int document_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT df FROM DocumentFile df WHERE df.document_id = :document_id";
 
@@ -114,9 +116,9 @@ public class UserApi {
         return docFile;
     }*/
 
-    public static boolean updateUser(int user_id, String name, String username, String email, String password) {
+    public boolean updateUser(int user_id, String name, String username, String email, String password) {
 
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
 
         User user = null;
@@ -127,7 +129,7 @@ public class UserApi {
 
             user = em.find(User.class, user_id);
 
-            user.setHash(passwordEncoder.encode(password));
+            user.setHash(passwordEncoder().encode(password));
             user.setName(name);
             user.setUsername(username);
             user.setEmail(email);
@@ -146,8 +148,8 @@ public class UserApi {
         return  accomplished;
     }
 
-    public static boolean deleteUser(int user_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean deleteUser(int user_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         User user = null;
         boolean accomplished = false;

@@ -1,0 +1,246 @@
+# Created at 2019-12-05T02:24:24.903
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:24.896 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.beornot2be.docsEE.DocsEeApplicationTest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:24.896 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.beornot2be.docsEE.DocsEeApplicationTest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:24.915
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:24.908 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:24.908 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:24.919
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:24.918 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]'.
+
+# Created at 2019-12-05T02:24:24.974
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:24.973 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.beornot2be.docsEE.DocsEeApplicationTest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:24.973 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.beornot2be.docsEE.DocsEeApplicationTest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.000
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:24.999 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.beornot2be.docsEE.DocsEeApplicationTest], using SpringBootContextLoader'.
+
+# Created at 2019-12-05T02:24:25.009
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.008 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: class path resource [com/beornot2be/docsEE/DocsEeApplicationTest-context.xml] does not exist'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.008 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: class path resource [com/beornot2be/docsEE/DocsEeApplicationTest-context.xml] does not exist'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.010
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.008 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: class path resource [com/beornot2be/docsEE/DocsEeApplicationTestContext.groovy] does not exist'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.008 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: class path resource [com/beornot2be/docsEE/DocsEeApplicationTestContext.groovy] does not exist'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.011
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.009 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: no resource found for suffixes {-context.xml, Context.groovy}.'.
+
+# Created at 2019-12-05T02:24:25.012
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.010 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.beornot2be.docsEE.DocsEeApplicationTest]: DocsEeApplicationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.'.
+
+# Created at 2019-12-05T02:24:25.088
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.088 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.088 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.189
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.188 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\timch\coding\docsEE\target\classes\com\beornot2be\docsEE\DocsEeApplication.class]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.188 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\timch\coding\docsEE\target\classes\com\beornot2be\docsEE\DocsEeApplication.class]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.191
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.189 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.beornot2be.docsEE.DocsEeApplication for test class com.beornot2be.docsEE.DocsEeApplicationTest'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.189 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.beornot2be.docsEE.DocsEeApplication for test class com.beornot2be.docsEE.DocsEeApplicationTest'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.193
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.192 [main] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.beornot2be.docsEE.DocsEeApplicationTest]: using defaults.'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.192 [main] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.beornot2be.docsEE.DocsEeApplicationTest]: using defaults.'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.195
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.193 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]'.
+
+# Created at 2019-12-05T02:24:25.215
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.214 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7d286fb6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3eb77ea8, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7b8b43c7, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7aaca91a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@44c73c26, org.springframework.test.context.transaction.TransactionalTestExecutionListener@41005828, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@60b4beb4, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7fcf2fc1, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2141a12, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4196c360, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@41294f8, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@225129c]'.
+
+# Created at 2019-12-05T02:24:25.225
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.224 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.224 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.277
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.225 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.225 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.beornot2be.docsEE.DocsEeApplicationTest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.337
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.336 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.beornot2be.docsEE.UnitJPATest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.336 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.beornot2be.docsEE.UnitJPATest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.343
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.336 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.336 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.345
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.336 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]'.
+
+# Created at 2019-12-05T02:24:25.346
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.336 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.beornot2be.docsEE.UnitJPATest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.336 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.beornot2be.docsEE.UnitJPATest] from class [org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.347
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.337 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.beornot2be.docsEE.UnitJPATest], using SpringBootContextLoader'.
+
+# Created at 2019-12-05T02:24:25.358
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.338 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.UnitJPATest]: class path resource [com/beornot2be/docsEE/UnitJPATest-context.xml] does not exist'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.338 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.UnitJPATest]: class path resource [com/beornot2be/docsEE/UnitJPATest-context.xml] does not exist'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.359
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.338 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.UnitJPATest]: class path resource [com/beornot2be/docsEE/UnitJPATestContext.groovy] does not exist'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.338 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.beornot2be.docsEE.UnitJPATest]: class path resource [com/beornot2be/docsEE/UnitJPATestContext.groovy] does not exist'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.365
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.338 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.beornot2be.docsEE.UnitJPATest]: no resource found for suffixes {-context.xml, Context.groovy}.'.
+
+# Created at 2019-12-05T02:24:25.368
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.338 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.beornot2be.docsEE.UnitJPATest]: UnitJPATest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.'.
+
+# Created at 2019-12-05T02:24:25.374
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.345 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.beornot2be.docsEE.UnitJPATest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.345 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.beornot2be.docsEE.UnitJPATest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.376
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.346 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.beornot2be.docsEE.DocsEeApplication for test class com.beornot2be.docsEE.UnitJPATest'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.346 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.beornot2be.docsEE.DocsEeApplication for test class com.beornot2be.docsEE.UnitJPATest'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.378
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.346 [main] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.beornot2be.docsEE.UnitJPATest]: using defaults.'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.346 [main] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - @TestExecutionListeners is not present for class [com.beornot2be.docsEE.UnitJPATest]: using defaults.'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.380
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.346 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener]'.
+
+# Created at 2019-12-05T02:24:25.394
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.347 [main] INFO org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@73194df, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6eb2384f, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3c9c0d96, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3a4621bd, org.springframework.test.context.support.DirtiesContextTestExecutionListener@31dadd46, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4ed5eb72, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@12f9af83, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@19b93fa8, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7e6ef134, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1f010bf0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@40db2a24, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@10cf09e8]'.
+
+# Created at 2019-12-05T02:24:25.397
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.347 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.beornot2be.docsEE.UnitJPATest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.347 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.beornot2be.docsEE.UnitJPATest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2019-12-05T02:24:25.399
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '02:24:25.347 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.beornot2be.docsEE.UnitJPATest]'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command '02:24:25.347 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.beornot2be.docsEE.UnitJPATest]'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:511)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:209)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:176)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+

@@ -2,11 +2,15 @@ package com.beornot2be.docsEE.graphql;
 
 import com.beornot2be.docsEE.db.methods.FileTypeApi;
 import graphql.schema.DataFetcher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class FileTypeDataFetcher {
+
+    @Autowired
+    FileTypeApi FileTypeApi;
 
     public DataFetcher getFileTypes() {
         return dataFetchingEnvironment -> FileTypeApi.getFileTypes();

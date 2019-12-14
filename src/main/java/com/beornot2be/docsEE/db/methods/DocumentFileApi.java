@@ -1,23 +1,22 @@
 package com.beornot2be.docsEE.db.methods;
 
+import com.beornot2be.docsEE.db.Database;
 import com.beornot2be.docsEE.model.DocumentFile;
 import com.beornot2be.docsEE.model.FileType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Component
 public class DocumentFileApi {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    @Autowired
+    Database db;
 
-
-    public DocumentFileApi(EntityManagerFactory em) {
-        ENTITY_MANAGER_FACTORY = em;
-    }
-
-
-    public static boolean addDocumentFile(String title, String link, int document_id, int type) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean addDocumentFile(String title, String link, int document_id, int type) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
@@ -50,8 +49,8 @@ public class DocumentFileApi {
         return  accomplished;
     }
 
-    public static List<DocumentFile> getDocumentFiles() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public List<DocumentFile> getDocumentFiles() {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String strQuery = "SELECT df FROM DocumentFile df WHERE df.document_file_id IS NOT NULL";
 
@@ -69,8 +68,8 @@ public class DocumentFileApi {
         return docFile;
     }
 
-    public static DocumentFile getDocumentFile(int document_file_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public DocumentFile getDocumentFile(int document_file_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
         String query = "SELECT df FROM DocumentFile df WHERE df.document_file_id = :document_file_id";
 
@@ -91,9 +90,9 @@ public class DocumentFileApi {
         return docFile;
     }
 
-    public static boolean updateDocumentFile(int document_file_id, String title, String link, int document_id, int type) {
+    public boolean updateDocumentFile(int document_file_id, String title, String link, int document_id, int type) {
 
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
 
         DocumentFile docFile = null;
@@ -129,8 +128,8 @@ public class DocumentFileApi {
         return  accomplished;
     }
 
-    public static boolean deleteDocumentFile(int document_file_id) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public boolean deleteDocumentFile(int document_file_id) {
+        EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
         EntityTransaction et = null;
         DocumentFile docFile = null;
         boolean accomplished = false;

@@ -32,7 +32,6 @@ type DocumentFile{
     created_at:String
     document_id:Int
     type:Int
-    author:Int
 }
 
 type Document{
@@ -41,6 +40,7 @@ type Document{
     description:String
     created_at:String
     edited_date:String
+    author_id:Int
     files:[DocumentFile]
 }
 
@@ -50,7 +50,7 @@ type Query{
     getDocument(document_id:ID):Document
     getDocuments:[Document]
     getDocumentsFiles(document_id:ID):[DocumentFile]
-    getDocumentsByAuthor(user_id:ID):[Document]
+    getDocumentsByAuthor(author_id:ID):[Document]
     getDocumentsByDependant(user_id:ID):[Document]
     getDocumentsByUsr(user_id:ID):[Document]
 
@@ -64,7 +64,7 @@ type Query{
     getUsers:[User]
 
     getDocumentPermission(document_permission_id:ID):DocumentPermission
-    getDocumentPermissions:[PermissionType]
+    getDocumentPermissions:[DocumentPermission]
     getDependantPermission(user_id:ID):[DocumentPermission]
     getAuthorPermission(user_id:ID):[DocumentPermission]
 
@@ -73,9 +73,9 @@ type Query{
 }
 
 type Mutation{
-    addDocument(title:String, description:String):Boolean
+    addDocument(title:String, description:String, author_id:Int):Boolean
     deleteDocument(document_id:ID):Boolean
-    updateDocument(document_id:ID, title:String, description:String):Boolean
+    updateDocument(document_id:ID, title:String, description:String, author_id:Int):Boolean
 
     addDocumentFile(title:String, link:String, document_id:Int, type:Int):Boolean
     deleteDocumentFile(document_file_id:ID):Boolean
