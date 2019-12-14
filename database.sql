@@ -79,7 +79,7 @@ CREATE TABLE `document_permission` (
   CONSTRAINT `document_permission_ibfk_2` FOREIGN KEY (`permission_type_id`) REFERENCES `permission_type` (`permission_type_id`) ON DELETE CASCADE,
   CONSTRAINT `document_permission_ibfk_3` FOREIGN KEY (`dependant_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `document_permission_ibfk_4` FOREIGN KEY (`author_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,4 +139,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-13 23:26:29
+-- Dump completed on 2019-12-14  1:38:42

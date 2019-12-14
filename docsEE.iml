@@ -20,7 +20,9 @@
           <factory-entry name="docsEETest" />
           <factory-entry name="entityManagerFactory" value="e9357437-2d63-4a68-9213-c89b520ecab3" />
         </datasource-mapping>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="entityManagerFactory" />
+        </naming-strategy-map>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/com/beornot2be/docsEE/model/DocumentFile.java" />
       </configuration>
     </facet>

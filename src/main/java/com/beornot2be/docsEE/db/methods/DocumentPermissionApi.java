@@ -48,7 +48,7 @@ public class DocumentPermissionApi {
     public List<DocumentPermission> getAuthorPermission(int author_id) {
         EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
-        String strQuery = "SELECT df FROM Document_Permission df WHERE df.author_id = :author_id";
+        String strQuery = "SELECT df FROM DocumentPermission df WHERE df.author_id = :author_id";
         TypedQuery<DocumentPermission> tq = em.createQuery(strQuery, DocumentPermission.class);
         tq.setParameter("author_id", author_id);
         List<DocumentPermission> docPers = null;
@@ -67,7 +67,7 @@ public class DocumentPermissionApi {
     public List<DocumentPermission> getDependantPermission(int dependant_user_id) {
         EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
-        String strQuery = "SELECT df FROM Document_Permission df WHERE df.dependant_user_id = :dependant_user_id";
+        String strQuery = "SELECT df FROM DocumentPermission df WHERE df.dependant_user_id = :dependant_user_id";
         TypedQuery<DocumentPermission> tq = em.createQuery(strQuery, DocumentPermission.class);
         tq.setParameter("dependant_user_id", dependant_user_id);
         List<DocumentPermission> docPers = null;
@@ -86,7 +86,7 @@ public class DocumentPermissionApi {
     public List<DocumentPermission> getDocumentPermissions() {
         EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
-        String strQuery = "SELECT df FROM Document_Permission df WHERE df.document_permission_id IS NOT NULL";
+        String strQuery = "SELECT df FROM DocumentPermission df WHERE df.document_permission_id IS NOT NULL";
         TypedQuery<DocumentPermission> tq = em.createQuery(strQuery, DocumentPermission.class);
         List<DocumentPermission> docPers = null;
         try {
@@ -104,7 +104,7 @@ public class DocumentPermissionApi {
     public DocumentPermission getDocumentPermission(int document_permission_id) {
         EntityManager em = db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
-        String query = "SELECT df FROM Document_Permission df WHERE df.document_permission_id = :document_permission_id";
+        String query = "SELECT df FROM DocumentPermission df WHERE df.document_permission_id = :document_permission_id";
 
         TypedQuery<DocumentPermission> tq = em.createQuery(query, DocumentPermission.class);
 
@@ -134,7 +134,7 @@ public class DocumentPermissionApi {
             et = em.getTransaction();
             et.begin();
 
-            String query = "SELECT df FROM Document_Permission df WHERE df.document_permission_id = :document_permission_id";
+            String query = "SELECT df FROM DocumentPermission df WHERE df.document_permission_id = :document_permission_id";
             TypedQuery<DocumentPermission> tq = em.createQuery(query, DocumentPermission.class);
             tq.setParameter("document_permission_id", document_permission_id);
             docPer = tq.getSingleResult();

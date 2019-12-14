@@ -42,7 +42,7 @@ public class PermissionTypeApi {
     public List<PermissionType> getPermissionTypes() {
         EntityManager em =  db.getENTITY_MANAGER_FACTORY().createEntityManager();
 
-        String strQuery = "SELECT pt FROM Permission_Type pt WHERE pt.permission_type_id IS NOT NULL";
+        String strQuery = "SELECT pt FROM PermissionType pt WHERE pt.permission_type_id IS NOT NULL";
 
         TypedQuery<PermissionType> tq = em.createQuery(strQuery, PermissionType.class);
         List<PermissionType> pt = null;

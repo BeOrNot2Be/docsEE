@@ -64,7 +64,7 @@ type Query{
     getUsers:[User]
 
     getDocumentPermission(document_permission_id:ID):DocumentPermission
-    getDocumentPermissions:[PermissionType]
+    getDocumentPermissions:[DocumentPermission]
     getDependantPermission(user_id:ID):[DocumentPermission]
     getAuthorPermission(user_id:ID):[DocumentPermission]
 
