@@ -46,8 +46,9 @@ public class DocumentFile implements Serializable {
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", updatable = false, insertable = false)
+    @Column(name = "created_at",  columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false, insertable = false)
     private Date created_at;
+
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;

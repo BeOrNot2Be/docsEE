@@ -1,56 +1,26 @@
 package com.beornot2be.docsEE;
 
 import com.beornot2be.docsEE.model.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import graphql.ExecutionInput;
-import graphql.ExecutionResult;
-import graphql.ExecutionResultImpl;
 import graphql.GraphQL;
-import lombok.val;
 import org.assertj.core.api.AssertionsForClassTypes;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.junit.Assert.assertEquals;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,8 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = DocsEeApplication.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-//@TestPropertySource(
-//        locations = "classpath:application-integrationtest.properties")
 public class GraphQLIntegrationTest {
 
     @Autowired
@@ -250,6 +218,49 @@ public class GraphQLIntegrationTest {
                 .andExpect(jsonPath("$.data.addDocument", is(true)))
                 .andExpect(jsonPath("$.data.addDocumentFile").exists())
                 .andExpect(jsonPath("$.data.addDocumentFile", is(true)));
+
+        String query2 = "mutation {" +
+                "addDocument(" +
+                " title: \\\"New file #2\\\"" +
+                " description: \\\"Some description for the file that I don't know\\\"" +
+                " author_id: 2" +
+                ") " +
+                "addDocumentFile(" +
+                " title: \\\"DSC666\\\"" +
+                " link: \\\"https://www.danielwellington.com/media/staticbucket/media/catalog/product/d/w/dw-petite-28-melrose-black-cat.png\\\"" +
+                " document_id: 2" +
+                " type: 1" +
+                ") " +
+                "}";
+
+        final var postResult2 = getPostResult(query2, true);
+
+        mockMvc.perform(asyncDispatch(postResult2))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addDocument").exists())
+                .andExpect(jsonPath("$.data.addDocument", is(true)))
+                .andExpect(jsonPath("$.data.addDocumentFile").exists())
+                .andExpect(jsonPath("$.data.addDocumentFile", is(true)));
+
+        String query3 = "mutation {" +
+                "addDocument(" +
+                " title: \\\"New file #3\\\"" +
+                " description: \\\"Some description for the file that I don't know\\\"" +
+                " author_id: 2" +
+                ") " +
+                "}";
+
+        final var postResult3 = getPostResult(query3, true);
+
+        mockMvc.perform(asyncDispatch(postResult3))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addDocument").exists())
+                .andExpect(jsonPath("$.data.addDocument", is(true)));
+
     }
 
 
@@ -274,8 +285,238 @@ public class GraphQLIntegrationTest {
                 .andExpect(jsonPath("$.data.addDocumentFile", is(true)));
     }
 
+    @Test
+    public void getDocs() throws Exception {
+        String query = "query {" +
+                "getDocuments{" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocuments").exists())
+                .andExpect(jsonPath("$.data.getDocuments").isArray())
+                .andExpect(jsonPath("$.data.getDocuments[*]", hasSize(3)));
+    }
+
+    @Test
+    public void getDocsByAuth() throws Exception {
+        String query = "query {" +
+                "getDocumentsByUsr(" +
+                " user_id: 1" +
+                "){" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[*]", hasSize(1)))
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[0].document_id").value("1"))
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[0].author_id").value(1))
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[0].files").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[0].files").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[0].files[*]", hasSize(2)));
+    }
+
+    @Test
+    public void addPermissionType() throws Exception {
+        String query = "mutation {" +
+                "addPermissionType(" +
+                " title: \\\"read\\\"" +
+                ") " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addPermissionType").exists())
+                .andExpect(jsonPath("$.data.addPermissionType", is(true)));
+    }
 
 
+    @Test
+    public void givePermission() throws Exception {
+        String query = "mutation {" +
+                "addDocumentPermission(" +
+                " document_id: 1" +
+                " author_id: 1" +
+                " dependant_user_id: 2" +
+                " permission_type_id: 1" +
+                ") " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.addDocumentPermission").exists())
+                .andExpect(jsonPath("$.data.addDocumentPermission", is(true)));
+
+        String query2 = "query {" +
+                "getDocumentsByDependant(" +
+                " user_id: 2" +
+                "){" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult2 = getPostResult(query2, true);
+
+        mockMvc.perform(asyncDispatch(postResult2))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant[*]", hasSize(1)));
+    }
+
+
+    @Test
+    public void getUserDocs() throws Exception {
+        String query = "query {" +
+                "getDocumentsByDependant(" +
+                " user_id: 4" +
+                "){" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult = getPostResult(query, true);
+
+        mockMvc.perform(asyncDispatch(postResult))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByDependant[*]", hasSize(0)));
+
+        String query2 = "query {" +
+                "getDocumentsByAuthor(" +
+                " author_id: 4" +
+                "){" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult2 = getPostResult(query2, true);
+
+        mockMvc.perform(asyncDispatch(postResult2))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocumentsByAuthor").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByAuthor").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByAuthor[*]", hasSize(0)));
+
+        String query3 = "query {" +
+                "getDocumentsByUsr(" +
+                " user_id: 4" +
+                "){" +
+                " document_id" +
+                " title" +
+                " description" +
+                " created_at" +
+                " edited_date" +
+                " author_id" +
+                " files{" +
+                "  document_file_id" +
+                "  title" +
+                "  link" +
+                "  created_at" +
+                "  type" +
+                "  }"+
+                " } " +
+                "}";
+
+        final var postResult3 = getPostResult(query3, true);
+
+        mockMvc.perform(asyncDispatch(postResult3))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.errors").doesNotExist())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr").exists())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr").isArray())
+                .andExpect(jsonPath("$.data.getDocumentsByUsr[*]", hasSize(0)));
+    }
 
 
 

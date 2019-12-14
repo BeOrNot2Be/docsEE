@@ -39,7 +39,7 @@ public class DocumentDataFetcher {
     public DataFetcher getDocumentsByDependant() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByPermDependant(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
                 );
     }
 
@@ -47,7 +47,7 @@ public class DocumentDataFetcher {
     public DataFetcher getDocumentsByUsr() {
         return dataFetchingEnvironment -> DocumentApi
                 .getDocumentsByUsr(
-                        Integer.parseInt(dataFetchingEnvironment.getArgument("author_id"))
+                        Integer.parseInt(dataFetchingEnvironment.getArgument("user_id"))
                 );
     }
 
