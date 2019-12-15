@@ -1,6 +1,7 @@
 package com.beornot2be.docsEE.db.methods;
 
 import com.beornot2be.docsEE.db.Database;
+import com.beornot2be.docsEE.db.UniqueFieldException;
 import com.beornot2be.docsEE.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,21 +28,40 @@ public class UserApi {
         EntityTransaction et = null;
         boolean accomplished = false;
         try {
+
+            String query = "SELECT u FROM User u WHERE u.username = :username";
+            TypedQuery<User> tq = em.createQuery(query, User.class);
+            tq.setParameter("username", username);
+            List<User> user = null;
+            user = tq.getResultList();
+            System.out.println("check username");
+            if (user.size() == 1) throw new UniqueFieldException("Username");
+
+            String query2 = "SELECT u FROM User u WHERE u.email = :email";
+            TypedQuery<User> tq2 = em.createQuery(query2, User.class);
+            tq2.setParameter("email", email);
+            List<User> user2 = tq2.getResultList();
+            System.out.println("check email");
+            if (user2.size() == 1) throw new UniqueFieldException("Email");
+
+            System.out.println("continue");
             et = em.getTransaction();
             et.begin();
+            User newUser = new User();
 
-            User user = new User();
-
-            user.setHash(passwordEncoder().encode(password));
-            user.setName(name);
-            user.setUsername(username);
-            user.setEmail(email);
+            newUser.setHash(passwordEncoder().encode(password));
+            newUser.setName(name);
+            newUser.setUsername(username);
+            newUser.setEmail(email);
 
 
-            em.persist(user);
+            em.persist(newUser);
             et.commit();
             accomplished = true;
-        } catch (Exception ex) {
+        } catch (UniqueFieldException se) {
+            throw se;
+        }
+        catch (Exception ex) {
             if (et != null) {
                 et.rollback();
             }
@@ -49,7 +69,7 @@ public class UserApi {
         } finally {
             em.close();
         }
-        return  accomplished;
+        return accomplished;
     }
 
     public List<User> getUsers() {

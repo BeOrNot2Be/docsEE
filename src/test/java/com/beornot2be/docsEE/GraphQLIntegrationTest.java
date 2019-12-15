@@ -137,9 +137,8 @@ public class GraphQLIntegrationTest {
         mockMvc.perform(asyncDispatch(postResult3))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.errors").doesNotExist())
-                .andExpect(jsonPath("$.data.addUser").exists())
-                .andExpect(jsonPath("$.data.addUser",  is(false)));
+                .andExpect(jsonPath("$.errors").exists())
+                .andExpect(jsonPath("$.data").exists());
 
         String query4 = "mutation {" +
                 "addUser(" +
